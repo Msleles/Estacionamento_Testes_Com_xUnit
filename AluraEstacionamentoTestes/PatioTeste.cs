@@ -6,18 +6,33 @@ using System.Threading.Tasks;
 using Xunit;
 using Alura.Estacionamento.Modelos;
 using Alura.Estacionamento.Alura.Estacionamento.Modelos;
+using Xunit.Abstractions;
 
 namespace AluraEstacionamentoTestes
 {
-    public class PatioTeste
+    public class PatioTeste : IDisposable
     {
+
+        private readonly Veiculo veiculo;
+        private readonly Patio estacionamento;
+        public ITestOutputHelper SaidaConsoleTeste;
+
+        public PatioTeste(ITestOutputHelper _saidaConsoleTeste)
+        {
+            veiculo = new Veiculo();
+            estacionamento = new Patio();
+            SaidaConsoleTeste = _saidaConsoleTeste;
+            SaidaConsoleTeste.WriteLine("Construtor invocado.");
+        }
+
+
         [Fact]
         public void ValidaFaturamento()
         {
             //Arrange
 
-            var estacionamento = new Patio();
-            var veiculo = new Veiculo();
+            //var estacionamento = new Patio();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = "Maycon Santos Leles";
             veiculo.Tipo = TipoVeiculo.Automovel;
             veiculo.Cor = "Preto";
@@ -50,8 +65,8 @@ namespace AluraEstacionamentoTestes
 
             //Arrange
 
-            var estacionamento = new Patio();
-            var veiculo = new Veiculo();
+            //var estacionamento = new Patio();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = proprietario;
             veiculo.Placa = placa;
             veiculo.Cor = cor;
@@ -79,8 +94,8 @@ namespace AluraEstacionamentoTestes
         {
             //Arrange
 
-            var estacionamento = new Patio();
-            var veiculo = new Veiculo();
+            //var estacionamento = new Patio();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = proprietario;
             veiculo.Placa = placa;
             veiculo.Cor = cor;
@@ -104,8 +119,8 @@ namespace AluraEstacionamentoTestes
 
             //Arrange
 
-            var estacionamento = new Patio();
-            var veiculo = new Veiculo();
+            //var estacionamento = new Patio();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = "Maycon  Leles";
             veiculo.Tipo = TipoVeiculo.Automovel;
             veiculo.Cor = "Preto";
@@ -129,6 +144,9 @@ namespace AluraEstacionamentoTestes
 
         }
 
-
+        public void Dispose()
+        {
+            SaidaConsoleTeste.WriteLine("Construtor invocado.");
+        }
     }
 }
